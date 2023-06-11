@@ -31,21 +31,31 @@ function App() {
   console.log( url )
 
   useEffect(()=>{
-    testing();
+    fetchApiConfig();
   },[])
 
-  const testing=  () =>{
-    fetchMovieDataFromApi('/movie/popular')
+  //fetching all popular movie data
+  const fetchApiConfig=  () =>{
+    fetchMovieDataFromApi('/configuration')
     .then((res)=>{
       console.log(res)
+
+      //retreiving movie poster into a url object
+      const url = {
+        backdrop: res.images.secure_base_url + "original" ,
+        poster: res.images.secure_base_url + "original" ,
+        profile: res.images.secure_base_url + "original" ,
+      }
+
+
       //suppling the data to redux store
-      dispatch(getApiConfiguration(res))
+      dispatch(getApiConfiguration(url))
     })
   }
 
   return (
     <BrowserRouter>
-    
+    <Header/>
     <Routes>
       <Route path='/'  element = {<Home></Home>}/>
       <Route path='/:mediaType/:id'  element = {<Details/>}/>
@@ -53,7 +63,7 @@ function App() {
       <Route path='/explore/:mediaType'  element = {<Explore/>}/>
       <Route path='*'  element = {<PageNotFound/>} />
     </Routes>
-    
+    <Footer/>
     </BrowserRouter>
   )
 }
