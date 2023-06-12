@@ -4,7 +4,7 @@ import SwitchTabs from '../../../components/switchTabs/SwitchTabs'
 import { useState } from 'react'
 import useFetch from '../../../customHooks/useFetch'
 
-
+import Carausel from '../../../components/carausel/Carausel'
 
 
 function Trending() {
@@ -20,12 +20,7 @@ function Trending() {
             parameter = "day"
         }else if(tab === "Week"){
             parameter = "week"
-        }else if(tab === "Month"){
-            parameter = "month"
-        }else if(tab === "Year"){
-            parameter = "year"
         }
-
         setEndpoint(parameter)
     }
 
@@ -33,8 +28,12 @@ function Trending() {
     <div className='carauselSection'>
         <ContentWrapper>
             <span className="carauselTitle">Trending Now</span>
-            <SwitchTabs data = {["Day" , "Week" , "Month" , "Year"]} onTabChange = {onTabChange}></SwitchTabs>
+            <SwitchTabs data = {["Day" , "Week" ]} onTabChange = {onTabChange}></SwitchTabs>
         </ContentWrapper>
+        {/* Carausel */}
+        <Carausel data={data?.results} loading = {loading}></Carausel>
+
+
     </div>
   )
 }
