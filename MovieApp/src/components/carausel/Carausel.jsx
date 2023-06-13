@@ -55,6 +55,9 @@ function Carausel({data , loading , endpoint , title}) {
     <div ref={carauselContainer}  className="carousel">
 
         <ContentWrapper>
+
+            {title && <div className ="title">{title}</div>}
+
             <BsFillArrowLeftCircleFill
                 className="carouselLeftNav arrow"
                 onClick={()=> navigattion("left")}
