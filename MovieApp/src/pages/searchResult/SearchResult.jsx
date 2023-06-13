@@ -6,7 +6,7 @@ import "./style.scss";
 
 import { fetchMovieDataFromApi } from "../../utils/api";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
-// import MovieCard from "../../components/movieCard/MovieCard";
+import MovieCard from "../../components/moviecard/MovieCard";
 import Spinner from "../../components/spinner/Spinner";
 import noResults from "../../assets/no-results.png";
 
@@ -50,6 +50,8 @@ const SearchResult = () => {
         fetchInitialData();
     }, [query]);
 
+
+    console.log(data)
     return (
         <div className="searchResultsPage">
             {loading && <Spinner initial={true} />}
@@ -71,6 +73,7 @@ const SearchResult = () => {
                                 hasMore={pageNum <= data?.total_pages}
                                 loader={<Spinner />}
                             >
+                                
                                 {data?.results.map((item, index) => {
                                     if (item.media_type === "person") return;
                                     return (
