@@ -12,22 +12,44 @@ import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
 import PosterFallback from "../../assets/no-poster.png";
 
+import CircleRating from "../circleRating/CircleRating";
+
 import "./style.scss";
 
+import Genres from "../genres/Genres";
 
 
 
-
-function Carausel({data , loading}) {
+function Carausel({data , loading , endpoint , title}) {
   
     const carauselContainer = useRef()
     const {url} = useSelector((state) => state.home )
     const navigate = useNavigate()
   
+
     const navigattion = (dir) =>{
+        const container = carauselContainer.current
+        const scrollAmount = dir === "left" ? container.scrollLeft - (container.offsetWidth +20) : container.scrollLeft + (container.offsetWidth +20)
+        container.scrollTo({
+            left: scrollAmount,
+            behavior:"smooth"
+
+        })
 
     }
 
+    const skItem = () => {
+        return (
+            <div className="skeletonItem">
+                <div className="posterBlock"></div>
+                <div className="textBlock">
+                    <div className="title skeleton"></div>
+                    <div className="date skeleton"></div>
+                </div>
+            </div>
+        )
+
+    }
 
     return (
     <div ref={carauselContainer}  className="carousel">
@@ -43,25 +65,37 @@ function Carausel({data , loading}) {
             />
 
             {!loading ? (
-                <div className="carouselItems">
+                <div className="carouselItems" ref={carauselContainer}>
                     {data?.map((item)=>{
                         const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback;
                         return (
-                            <div   key={item.id} className="carouselItem">
+                            <div   key={item.id} className="carouselItem" onClick={()=>navigate(`/${item.media_type || endpoint}/${item.id}`)}>
                                 <div className="posterBlock">
                                     <Img src={posterUrl}></Img>
+                                    <CircleRating  rating = {item.vote_average.toFixed(1)}></CircleRating>
+
+                                    <Genres data= {item.genre_ids.slice(0,2)} ></Genres>
+                                
+                                
                                 </div>
 
                                 <div className="textBlock">
                                     <span className="title">{item.title || item.name}</span>
-                                    <span className="title">{dayjs(item.release_Date).format("MMM D, YYYY") || item.name}</span>
+                                    <span className="title">{dayjs(item.release_Date || item.first_air_date).format("MMM D, YYYY") || item.name}</span>
                                 </div>
                             </div>
                         )
                     })}
                 </div>
             ) : (
-                <span>Loading....</span>
+                <div className="loadingSkeleton">
+                {skItem()}
+                {skItem()}
+                {skItem()}
+                {skItem()}
+                {skItem()}
+                </div>
+
             )}
 
         </ContentWrapper>

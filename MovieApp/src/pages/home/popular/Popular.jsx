@@ -7,19 +7,18 @@ import useFetch from '../../../customHooks/useFetch'
 import Carausel from '../../../components/carausel/Carausel'
 
 
-function Trending() {
-    const [endpoint , setEndpoint] = useState("day")
+const Popular = () => {
+    const [endpoint , setEndpoint] = useState("movie")
 
-    const {data , loading} = useFetch(`/trending/all/${endpoint}`)
+    const {data , loading} = useFetch(`/${endpoint}/popular/`)
 
     //whenever we change the tab we want to fetch the data 
     const onTabChange = (tab) => {
 
         let parameter = ""
-        if(tab === "Day"){
-            parameter = "day"
-        }else if(tab === "Week"){
-            parameter = "week"
+        if(tab === "Movies"){
+        }else if(tab === "TV Shows"){
+            parameter = "tv"
         }
         setEndpoint(parameter)
     }
@@ -27,15 +26,15 @@ function Trending() {
   return (
     <div className='carauselSection'>
         <ContentWrapper>
-            <span className="carauselTitle">Trending Now</span>
-            <SwitchTabs data = {["Day" , "Week" ]} onTabChange = {onTabChange}></SwitchTabs>
+            <span className="carauselTitle">What's Popular</span>
+            <SwitchTabs data = {["Movies" , "TV Shows" ]} onTabChange = {onTabChange}></SwitchTabs>
         </ContentWrapper>
         {/* Carausel */}
-        <Carausel data={data?.results} loading = {loading} endpoint={endpoint}></Carausel>
+        <Carausel data={data?.results} loading = {loading} endpoint={endpoint}   ></Carausel>
 
 
     </div>
   )
 }
 
-export default Trending
+export default Popular
