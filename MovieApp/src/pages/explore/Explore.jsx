@@ -85,7 +85,7 @@ const Explore = () => {
             setGenre(selectedItems);
             if (action.action !== "clear") {
                 let genreId = selectedItems.map((g) => g.id);
-                genreId = JSON.stringify(genreId).slice(1, -1);
+                genreId = JSON.stringify(genreId).slice(1, -1); //to remove square brackets 
                 filters.with_genres = genreId;
             } else {
                 delete filters.with_genres;
