@@ -17,6 +17,8 @@ const useFetch = (url) => {
             .then((res) => {
                 setLoading(false);
                 setData(res);
+
+                //console.log("data recieved is " , data)
             })
             .catch((err) => {
                 setLoading(false);
