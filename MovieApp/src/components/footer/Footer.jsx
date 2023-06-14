@@ -39,7 +39,7 @@ const Footer = () => {
                         <a className='footer-icon' href="https://www.linkedin.com/in/tarang-rastogi-667397179/"><FaLinkedin/></a>
                     </span>
                     <span className="icon">
-                    <a className='footer-icon' href="https://www.linkedin.com/in/tarang-rastogi-667397179/"><FaFacebookF /></a>
+                    <a className='footer-icon' href="https://github.com/TechnoDiktator"><FaFacebookF /></a>
                     </span>
                     <span className="icon">
                     <a className='footer-icon' href="https://www.linkedin.com/in/tarang-rastogi-667397179/"><FaInstagram /></a>
