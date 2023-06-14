@@ -33,9 +33,16 @@ function HeroBanner() {
         if(event.key === "Enter"  && query.length > 0){
             navigate(`/search/${query}`)
         }
-
     }
     
+
+    
+    const searchMouseHandler = (event) => {
+        if(query.length > 0){
+            navigate(`/search/${query}`)
+        }
+    }
+
   return (
     <div className="heroBanner">
         { !loading &&<div className="backdrop-img">
@@ -43,7 +50,7 @@ function HeroBanner() {
         </div>}
 
         <div className="opacity-layer">
-            
+
         </div>
 
 
@@ -53,9 +60,10 @@ function HeroBanner() {
                 
             <div className="wrapper">
                 <div className="heroBannerContent">
-                    <span className="title">Welcome.</span>
+                    <span className="title">Welcome to IMDB</span>
                     <span className="subTitle">A one stop solution for all your movie cravings !!</span>
-                
+                    <h4>Made by Tarang Rastogi</h4>
+
                     <div className="searchInput">
                         <input 
                         type="text" 
@@ -63,7 +71,7 @@ function HeroBanner() {
                         onKeyUp={(e)=>{searchHandler(e)}} 
                         onChange={(e)=>{setQuery(e.target.value)}}
                         />
-                        <button type="">Search</button>
+                        <button onClick={(e)=>{searchMouseHandler(e)}} type="">Search</button>
                     </div>
                 
                 </div>

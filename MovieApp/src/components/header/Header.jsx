@@ -7,6 +7,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
+import imdb from"../../assets/IMDB_Logo_2016.svg"
+
 
 const Header = () => {
     const [show, setShow] = useState("top");
@@ -85,7 +87,7 @@ const Header = () => {
         <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
             <ContentWrapper>
                 <div className="logo">
-                    <img src={logo} alt=""  onClick={()=>{navigate("/")}}/>
+                    <img src={imdb} alt=""  onClick={()=>{navigate("/")}}/>
                 </div>
 
                 <ul className="menuItems">
