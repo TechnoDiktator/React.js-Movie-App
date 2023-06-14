@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {
     FaFacebookF,
     FaInstagram,
-    FaTwitter,
     FaLinkedin,
+    FaGithubAlt,
 } from "react-icons/fa";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
@@ -33,17 +33,18 @@ const Footer = () => {
                 </div>
                 <div className="socialIcons">
                     <span className="icon">
-                        <FaFacebookF />
+                    <a className='footer-icon' href="https://github.com/TechnoDiktator"><FaGithubAlt /></a>
                     </span>
                     <span className="icon">
-                        <FaInstagram />
+                        <a className='footer-icon' href="https://www.linkedin.com/in/tarang-rastogi-667397179/"><FaLinkedin/></a>
                     </span>
                     <span className="icon">
-                        <FaTwitter />
+                    <a className='footer-icon' href="https://www.linkedin.com/in/tarang-rastogi-667397179/"><FaFacebookF /></a>
                     </span>
                     <span className="icon">
-                        <a className='footer-icon' href=""><FaLinkedin/></a>
+                    <a className='footer-icon' href="https://www.linkedin.com/in/tarang-rastogi-667397179/"><FaInstagram /></a>
                     </span>
+
                 </div>
             </ContentWrapper>
         </footer>

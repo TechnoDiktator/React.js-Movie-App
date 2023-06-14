@@ -2,7 +2,7 @@
 // CSS
 @import "../../mixins.scss";
 .footer {
-    background-color: var(--black3);
+    background-color:black;
     padding: 50px 0;
     color: white;
     position: relative;
@@ -67,4 +67,9 @@
             }
         }
     }
+}
+
+.footer-icon{
+    color: white;
+
 }
